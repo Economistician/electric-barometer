@@ -25,6 +25,13 @@ Electric Barometer is composed of several interoperable packages:
   measures such as Cost-Weighted Service Loss (CWSL), Forecast Readiness Score (FRS),
   and related primitives.
 
+- **`eb-features`**  
+  Defines feature engineering primitives and transformations used to prepare inputs
+  for forecasting and evaluation. This package focuses on constructing lagged signals,
+  aggregations, temporal features, and operational context variables in a
+  model-agnostic, reproducible way, serving as the canonical feature layer for the
+  Electric Barometer ecosystem.
+
 - **`eb-evaluation`**  
   Provides DataFrame-first utilities for applying metrics across entities, groups,
   hierarchies, and time windows. This layer handles evaluation, comparison, and
