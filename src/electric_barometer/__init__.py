@@ -11,7 +11,8 @@ purpose is to provide a stable installation and versioning surface for the
 Electric Barometer framework by coordinating the following leaf packages:
 
 - eb-metrics     : Core asymmetric forecast metrics
-- eb-evaluation  : DataFrame-based evaluation and orchestration utilities
+- eb-fevaluation : DataFrame-based evaluation and orchestration utilities
+- eb-features    : Panel and time-series feature engineering utilities
 - eb-adapters    : Forecast model adapter interfaces
 
 End users are expected to interact primarily with the leaf packages directly.

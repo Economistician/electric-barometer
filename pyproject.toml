@@ -1,25 +1,32 @@
 [project]
 name = "electric-barometer"
-version = "0.1.0"
-description = "Umbrella package for the Electric Barometer ecosystem (metrics, evaluation, adapters, and related tooling)."
+version = "0.2.0"
+description = "Umbrella package for the Electric Barometer ecosystem (metrics, evaluation, features, adapters, and related tooling)."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "BSD-3-Clause" }
+
+# Use a license expression string (PEP 639-compatible)
+license = "BSD-3-Clause"
+license-files = ["LICENSE*"]
 
 authors = [
   { name = "Kyle Corrie (Economistician)", email = "kcorrie@economistician.com" }
 ]
 
 # Keep installable even before all subpackages are published to PyPI.
-dependencies = ["eb-metrics>=0.1.1,<0.2","eb-evaluation>=0.1.1,<0.2","eb-adapters>=0.1.0,<0.2"]
+dependencies = [
+  "eb-metrics>=0.1.1,<0.2",
+  "eb-evaluation>=0.2.0,<0.3",
+  "eb-adapters>=0.1.0,<0.2",
+  "eb-features>=0.1.0,<0.2",
+]
 
-keywords = ["forecasting", "operations", "evaluation", "metrics", "time-series"]
+keywords = ["forecasting", "operations", "evaluation", "metrics", "features", "time-series"]
 
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
   "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: BSD License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
@@ -39,15 +46,18 @@ dev = [
   "pytest-cov>=5.0",
 ]
 
-# Ecosystem extras (enable as packages become available on PyPI)
+# Ecosystem extras
 metrics = [
   "eb-metrics>=0.1.1,<0.2",
 ]
 evaluation = [
-  "eb-evaluation>=0.1.1,<0.2",
+  "eb-evaluation>=0.2.0,<0.3",
 ]
 adapters = [
-  "eb-adapters>=0.1.1,<0.2",
+  "eb-adapters>=0.1.0,<0.2",
+]
+features = [
+  "eb-features>=0.1.0,<0.2",
 ]
 
 # Proxy extras to eb-metrics extras (already exist in eb-metrics)
@@ -63,6 +73,7 @@ all = [
   "electric-barometer[metrics]",
   "electric-barometer[evaluation]",
   "electric-barometer[adapters]",
+  "electric-barometer[features]",
   "electric-barometer[sklearn]",
   "electric-barometer[tf]",
 ]
