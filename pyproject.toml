@@ -54,6 +54,11 @@ Documentation = "https://economistician.github.io/eb-docs/"
 ######################################
 [project.optional-dependencies]
 
+# CI / test-only dependencies
+test = [
+  "pytest>=8.0",
+]
+
 # Local developer tooling
 dev = [
   "pytest>=8.0",
