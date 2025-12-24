@@ -1,160 +1,45 @@
-# Electric Barometer
+# Electric Barometer (`electric-barometer`)
 
-![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)
-![Python Versions](https://img.shields.io/badge/Python-3.10%2B-blue)
-![Project Status](https://img.shields.io/badge/Status-Alpha-yellow)
-
-**Electric Barometer** is a modular, cost-aware forecasting evaluation framework designed
-for operational decision-making. It provides a structured way to evaluate, compare, and
-select forecasts when error costs are asymmetric and operational consequences matter.
-
-Rather than delivering a single monolithic library, Electric Barometer is intentionally
-organized as a small ecosystem of focused packages, each with a clear responsibility.
-
-This repository serves as the **umbrella distribution and conceptual entry point** for
-the Electric Barometer ecosystem.
+Top-level orchestration and entry-point package for the Electric Barometer ecosystem.
 
 ---
 
-## The Electric Barometer Ecosystem
+## Overview
 
-Electric Barometer is composed of several interoperable packages:
+Electric Barometer is a modular framework for evaluating and selecting forecasts in operational environments where traditional accuracy metrics are insufficient. Rather than focusing solely on statistical error, the framework emphasizes service risk, asymmetry, and execution readiness.
 
-- **`eb-metrics`**  
-  Defines individual forecast error and service metrics, including cost-asymmetric
-  measures such as Cost-Weighted Service Loss (CWSL), Forecast Readiness Score (FRS),
-  and related primitives.
-
-- **`eb-features`**  
-  Defines feature engineering primitives and transformations used to prepare inputs
-  for forecasting and evaluation. This package focuses on constructing lagged signals,
-  aggregations, temporal features, and operational context variables in a
-  model-agnostic, reproducible way, serving as the canonical feature layer for the
-  Electric Barometer ecosystem.
-
-- **`eb-evaluation`**  
-  Provides DataFrame-first utilities for applying metrics across entities, groups,
-  hierarchies, and time windows. This layer handles evaluation, comparison, and
-  selection logic while delegating metric math to `eb-metrics`.
-
-- **`eb-adapters`**  
-  Normalizes interfaces for external forecasting and regression libraries so they can
-  be evaluated consistently. Adapters expose a common `.fit / .predict` contract for
-  heterogeneous models.
-
-- **`eb-examples`**  
-  Contains worked examples, notebooks, and practical demonstrations showing how the
-  Electric Barometer ecosystem is used end-to-end in real scenarios.
-
-- **`eb-papers`**  
-  The source of truth for conceptual definitions, theoretical foundations, and
-  methodological rationale behind Electric Barometer metrics and frameworks.
-
-Each package is versioned, tested, and documented independently, but designed to work
-together seamlessly.
+This repository serves as the top-level entry point for the Electric Barometer ecosystem. It establishes a stable system boundary and coordinates access to core components. Detailed implementations of metrics, evaluation workflows, feature engineering utilities, and integration adapters live in dedicated sub-packages.
 
 ---
 
-## What This Repository Provides
+## Role in the Electric Barometer Ecosystem
 
-This `electric-barometer` repository:
+`electric-barometer` defines the public system boundary for the Electric Barometer ecosystem. It provides a unified entry point, establishes compatible dependency constraints across core packages, and ensures that the ecosystem can be installed and imported as a coherent whole.
 
-- Acts as the **canonical entry point** to the ecosystem
-- Provides a single install surface for core Electric Barometer functionality
-- Establishes the conceptual map of the project
-- Ensures compatible dependency resolution across subpackages
-
-It intentionally contains minimal implementation code.
+This repository does not implement metrics, evaluation logic, feature engineering, or model adapters directly. Those responsibilities live in dedicated sub-packages. Instead, this layer coordinates composition, versioning, and optional integration, allowing users to adopt only the components they need while maintaining a stable and well-defined top-level interface.
 
 ---
 
 ## Installation
 
-Install the Electric Barometer umbrella package via pip:
-
 ```bash
 pip install electric-barometer
-```
-
-This installs the core dependencies required to work with Electric Barometer metrics.
-Additional functionality is provided by installing the underlying packages directly
-(e.g., `eb-evaluation`, `eb-adapters`) or via future optional extras.
-
-For development:
-
-```bash
-pip install -e .
 ```
 
 ---
 
 ## Design Philosophy
 
-Electric Barometer is built around a few core principles:
+Electric Barometer is designed around the idea that forecast quality in operational systems cannot be reduced to a single notion of statistical accuracy. In many real-world settings, the cost of over-forecasting and under-forecasting is asymmetric, and the consequences of failure depend on execution constraints rather than abstract error alone.
 
-- **Separation of concerns**  
-  Metric definitions, evaluation logic, and model interfaces live in separate packages.
+The ecosystem is intentionally modular. Metrics, evaluation workflows, feature
+engineering utilities, and integration adapters are developed as independent components with clear responsibilities. This separation allows the framework to remain flexible, composable, and adaptable to different operational contexts without forcing a monolithic workflow.
 
-- **Cost-aware evaluation**  
-  Forecast accuracy is evaluated in terms of operational impact, not symmetric error
-  alone.
-
-- **Operational realism**  
-  Metrics and frameworks are designed for environments where underbuild and overbuild
-  have different consequences.
-
-- **Composable tooling**  
-  Users can adopt only the layers they need without committing to a monolith.
-
----
-
-## Examples and Tutorials
-
-Examples, notebooks, and applied workflows are maintained in the separate
-**`eb-examples`** repository.
-
-This repository intentionally avoids embedding example code to keep the core packages
-lean and focused.
-
----
-
-## Documentation
-
-Unified documentation for the Electric Barometer ecosystem is available at:
-
-https://economistician.github.io/eb-docs/
-
-Documentation is generated directly from source code docstrings and kept consistent
-across packages.
-
----
-
-## Status
-
-Electric Barometer is under active development.
-Public APIs may evolve prior to the first stable release.
-
----
-
-## Authorship and Stewardship
-
-The Electric Barometer ecosystem is designed and maintained by  
-**Kyle Corrie** under the *Economistician* moniker.
-
-The project reflects applied research and production experience in
-forecasting, operations research, and cost-asymmetric decision systems
-within large-scale operational environments.
-
-For questions, collaboration, or research inquiries:
-
-- GitHub: https://github.com/Economistician
-- Contact: kcorrie@economistician.com
-
-Conceptual foundations and formal methodology are documented in the
-companion research repository **eb-papers**.
+At the system level, Electric Barometer prioritizes explicit contracts, stable interfaces, and conservative composition. The top-level orchestration layer exists to define clear boundaries and reduce coupling, ensuring that the ecosystem can evolve without breaking downstream usage.
 
 ---
 
 ## License
 
-This project is licensed under the BSD 3-Clause License.
+BSD 3-Clause License.  
+© 2025 Kyle Corrie.
