@@ -32,13 +32,13 @@ jobs:
       - name: Upgrade packaging tools
         run: python -m pip install -U pip setuptools wheel
 
-      - name: Install package (editable)
+      - name: Install package (editable) with test dependencies
         if: matrix.install-target == 'core'
-        run: python -m pip install -e .
+        run: python -m pip install -e ".[test]"
 
-      - name: Install package (editable) with all extras
+      - name: Install package (editable) with all extras + test dependencies
         if: matrix.install-target == 'all'
-        run: python -m pip install -e ".[all]"
+        run: python -m pip install -e ".[all,test]"
 
       - name: Run tests
         run: python -m pytest -q
