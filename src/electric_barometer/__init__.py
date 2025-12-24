@@ -1,32 +1,22 @@
 from __future__ import annotations
 
 """
-electric-barometer
-==================
+Top-level orchestration package for the Electric Barometer ecosystem.
 
-Umbrella package for the Electric Barometer ecosystem.
-
-This distribution intentionally contains minimal runtime code. Its primary
-purpose is to provide a stable installation and versioning surface for the
-Electric Barometer framework by coordinating the following leaf packages:
-
-- eb-metrics     : Core asymmetric forecast metrics
-- eb-fevaluation : DataFrame-based evaluation and orchestration utilities
-- eb-features    : Panel and time-series feature engineering utilities
-- eb-adapters    : Forecast model adapter interfaces
-
-End users are expected to interact primarily with the leaf packages directly.
+This distribution intentionally contains minimal runtime code. Its primary purpose
+is to provide a stable installation and versioning surface and to coordinate
+compatible dependency constraints across the core Electric Barometer packages.
 """
 
 from importlib.metadata import PackageNotFoundError, version
 
 
 def _resolve_version() -> str:
-    """Resolve the installed version of the electric-barometer distribution."""
+    """Return the installed version of the electric-barometer distribution."""
     try:
         return version("electric-barometer")
     except PackageNotFoundError:
-        # Fallback for editable installs or source checkouts
+        # Not installed (e.g., running from a source checkout)
         return "0.0.0"
 
 
