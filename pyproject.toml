@@ -3,7 +3,7 @@
 ######################################
 [project]
 name = "electric-barometer"
-version = "0.2.2"
+version = "0.2.3"
 description = "Umbrella package for the Electric Barometer ecosystem (metrics, evaluation, features, adapters, and related tooling)."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -33,11 +33,11 @@ classifiers = [
 # Core runtime dependencies
 ######################################
 # Electric Barometer compatibility band (0.2.x)
-
 dependencies = [
   "eb-metrics>=0.2,<0.3",
   "eb-evaluation>=0.2,<0.3",
   "eb-adapters>=0.2,<0.3",
+  "eb-features>=0.2,<0.3",
 ]
 
 ######################################
@@ -75,8 +75,6 @@ evaluation = [
 adapters = [
   "eb-adapters>=0.2,<0.3",
 ]
-
-# eb-features is optional until its 0.2.x line is published
 features = [
   "eb-features>=0.2,<0.3",
 ]
