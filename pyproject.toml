@@ -3,7 +3,7 @@
 ######################################
 [project]
 name = "electric-barometer"
-version = "0.2.1"
+version = "0.2.2"
 description = "Umbrella package for the Electric Barometer ecosystem (metrics, evaluation, features, adapters, and related tooling)."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -32,12 +32,12 @@ classifiers = [
 ######################################
 # Core runtime dependencies
 ######################################
-# Keep installable even before all subpackages are published to PyPI.
+# Electric Barometer compatibility band (0.2.x)
+
 dependencies = [
-  "eb-metrics>=0.1.1,<0.2",
-  "eb-evaluation>=0.2.0,<0.3",
-  "eb-adapters>=0.1.0,<0.2",
-  "eb-features>=0.1.0,<0.2",
+  "eb-metrics>=0.2,<0.3",
+  "eb-evaluation>=0.2,<0.3",
+  "eb-adapters>=0.2,<0.3",
 ]
 
 ######################################
@@ -65,26 +65,28 @@ dev = [
   "pytest-cov>=5.0",
 ]
 
-# Ecosystem extras
+# Ecosystem extras (band-aligned)
 metrics = [
-  "eb-metrics>=0.1.1,<0.2",
+  "eb-metrics>=0.2,<0.3",
 ]
 evaluation = [
-  "eb-evaluation>=0.2.0,<0.3",
+  "eb-evaluation>=0.2,<0.3",
 ]
 adapters = [
-  "eb-adapters>=0.1.0,<0.2",
-]
-features = [
-  "eb-features>=0.1.0,<0.2",
+  "eb-adapters>=0.2,<0.3",
 ]
 
-# Proxy extras to eb-metrics extras (defined in eb-metrics)
+# eb-features is optional until its 0.2.x line is published
+features = [
+  "eb-features>=0.2,<0.3",
+]
+
+# Proxy extras to eb-metrics extras (band-aligned)
 sklearn = [
-  "eb-metrics[sklearn]>=0.1.1,<0.2",
+  "eb-metrics[sklearn]>=0.2,<0.3",
 ]
 tf = [
-  "eb-metrics[tf]>=0.1.1,<0.2",
+  "eb-metrics[tf]>=0.2,<0.3",
 ]
 
 # Convenience rollups
