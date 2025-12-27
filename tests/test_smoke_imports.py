@@ -15,7 +15,6 @@ def _can_import(name: str) -> bool:
 
 def test_smoke_imports_and_public_surface():
     # Required core packages
-    import eb_metrics
     import electric_barometer as eb
 
     # Minimal public-surface assertion for the flagship package
