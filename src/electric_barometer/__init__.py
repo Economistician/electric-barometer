@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 """
 Top-level orchestration package for the Electric Barometer ecosystem.
 
@@ -7,6 +5,8 @@ This distribution intentionally contains minimal runtime code. Its primary purpo
 is to provide a stable installation and versioning surface and to coordinate
 compatible dependency constraints across the core Electric Barometer packages.
 """
+
+from __future__ import annotations
 
 from importlib.metadata import PackageNotFoundError, version
 
