@@ -3,13 +3,13 @@
 ######################################
 [project]
 name = "electric-barometer"
-version = "0.2.5"
+version = "0.2.6"
 description = "Umbrella package for the Electric Barometer ecosystem (metrics, evaluation, features, adapters, and related tooling)."
 readme = "README.md"
 requires-python = ">=3.10"
 
 # License expression string (PEP 639-compatible)
-license = "BSD-3-Clause"
+license = { text = "BSD-3-Clause" }
 license-files = ["LICENSE*"]
 
 authors = [
@@ -26,6 +26,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Operating System :: OS Independent",
 ]
 
@@ -88,13 +89,9 @@ tf = [
 ]
 
 # Convenience rollups
+# Updated to include test/dev tools to satisfy the Hub CI contract
 all = [
-  "electric-barometer[metrics]",
-  "electric-barometer[evaluation]",
-  "electric-barometer[adapters]",
-  "electric-barometer[features]",
-  "electric-barometer[sklearn]",
-  "electric-barometer[tf]",
+  "electric-barometer[metrics,evaluation,adapters,features,sklearn,tf,test,dev]",
 ]
 
 ######################################
