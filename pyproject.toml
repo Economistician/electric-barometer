@@ -89,9 +89,14 @@ tf = [
 ]
 
 # Convenience rollups
-# Updated to include test/dev tools to satisfy the Hub CI contract
+# IMPORTANT: do NOT self-reference "electric-barometer[...]" inside its own extras.
 all = [
-  "electric-barometer[metrics,evaluation,adapters,features,sklearn,tf,test,dev]",
+  "eb-metrics[sklearn,tf]>=0.2,<0.3",
+  "eb-evaluation>=0.2,<0.3",
+  "eb-adapters>=0.2,<0.3",
+  "eb-features>=0.2,<0.3",
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
 ]
 
 ######################################
