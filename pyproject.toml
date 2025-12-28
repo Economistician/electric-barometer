@@ -9,7 +9,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 
 # License expression string (PEP 639-compatible)
-license = { text = "BSD-3-Clause" }
+license = "BSD-3-Clause"
 license-files = ["LICENSE*"]
 
 authors = [
