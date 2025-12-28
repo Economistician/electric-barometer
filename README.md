@@ -46,5 +46,5 @@ At the system level, Electric Barometer prioritizes explicit contracts, stable i
 
 ## License
 
-BSD 3-Clause License.  
+BSD 3-Clause License.
 © 2025 Kyle Corrie.
