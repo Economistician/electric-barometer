@@ -1,0 +1,137 @@
+REPOSITORY: electric-barometer
+
+ROLE
+This repository is the primary orchestration and workflow framework for the
+Electric Barometer (EB) ecosystem.
+
+It coordinates forecasting workflows end-to-end by composing contracts,
+adapters, evaluation, optimization artifacts, governance decisions, and
+(optional) adjustment layers into explicit, reproducible pipelines.
+
+This repository defines HOW EB components are wired together and executed
+in sequence.
+It does not redefine metrics, contracts, optimization logic, or policy.
+
+---
+
+PRIMARY RESPONSIBILITIES
+
+- Workflow orchestration:
+  - define and execute canonical EB pipelines
+  - coordinate baseline forecasting, model zoo execution, evaluation,
+    governance, and (if permitted) adjustment
+  - ensure correct ordering of system stages as defined in llm.system.txt
+
+- Model zoo coordination:
+  - manage execution of multiple candidate models via eb-adapters
+  - handle model lifecycle concerns (fit, predict, artifact collection)
+  - surface model outputs for evaluation and comparison
+
+- Artifact flow management:
+  - pass contract-valid artifacts between stages
+  - ensure outputs from one stage satisfy inputs of the next
+  - maintain explicit provenance and traceability across pipeline steps
+
+- Configuration and execution control:
+  - expose explicit, declarative configuration for pipelines
+  - support optional strictness modes (e.g., with or without FAS)
+  - ensure pipeline behavior is reproducible given configuration + inputs
+
+---
+
+NON-RESPONSIBILITIES (STRICT)
+
+This repository MUST NOT:
+
+- Re-implement or redefine EB contracts
+  (belongs in eb-contracts)
+
+- Re-implement metric mathematics or evaluation logic
+  (belongs in eb-metrics / eb-evaluation)
+
+- Perform parameter tuning or optimization
+  (belongs in eb-optimization)
+
+- Make binding governance decisions
+  (belongs in governance layers defined in eb-evaluation / system law)
+
+- Encode hidden thresholds, heuristics, or policy defaults
+- Apply RAL or adjustments without an explicit Governance decision
+- Serve as an execution or operational runtime beyond pipeline definition
+
+---
+
+CORE INVARIANTS
+
+- Canonical pipeline adherence.
+  All workflows must respect the ordering and invariants defined in
+  `eb-integration/llm.system.txt`, including:
+  - baseline forecasting before FAS
+  - evaluation before governance
+  - DQC before FPC
+  - governance as the single binding decision layer
+
+- Separation of concerns.
+  This repository composes functionality; it does not own domain logic.
+
+- Explicit configuration.
+  Pipeline behavior must be controlled via explicit configuration or inputs,
+  not implicit defaults or hidden branching.
+
+- Reproducibility.
+  Given the same inputs, configuration, and parameter artifacts, pipeline
+  execution must be deterministic.
+
+- Auditability.
+  Intermediate artifacts (forecasts, diagnostics, governance outputs,
+  adjustments) must be preserved or traceable for inspection.
+
+---
+
+SYSTEM RELATIONSHIP
+
+- This repository defers to `eb-integration/llm.system.txt` for:
+  - system-wide worldview
+  - canonical pipeline ordering
+  - governance and adjustment invariants
+
+- This repository consumes:
+  - eb-contracts for artifact schemas and validation
+  - eb-adapters for model integration
+  - eb-metrics for metric primitives (indirectly via evaluation)
+  - eb-evaluation for diagnostics, governance artifacts, and readiness signals
+  - eb-optimization for parameter and policy artifacts
+
+- This repository produces:
+  - fully orchestrated EB workflows
+  - contract-valid forecast and diagnostic artifacts
+  - auditable execution traces
+
+---
+
+ALLOWED CHANGES
+
+- Adding new pipeline orchestration patterns
+- Improving workflow configuration and composability
+- Extending model zoo coordination (without embedding model logic)
+- Enhancing traceability, logging, and provenance handling
+- Supporting new EB components via composition
+
+---
+
+DISALLOWED CHANGES
+
+- Turning orchestration logic into implicit policy
+- Embedding evaluation thresholds or decision rules
+- Introducing “smart defaults” that alter governance outcomes
+- Duplicating functionality from leaf repositories
+- Blurring orchestration with execution or serving logic
+
+---
+
+INTERPRETATION RULE
+
+If the change is about sequencing, wiring, or coordinating EB components,
+it belongs here.
+If the change is about defining metrics, learning parameters, governing
+decisions, or executing adjustments, it does not belong here.
