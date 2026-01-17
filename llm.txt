@@ -12,6 +12,10 @@ This repository defines HOW EB components are wired together and executed
 in sequence.
 It does not redefine metrics, contracts, optimization logic, or policy.
 
+STYLE
+- Inherits ecosystem-wide style and linting rules from
+  eb-integration/tooling/llm.style.txt via shared tooling.
+
 ---
 
 PRIMARY RESPONSIBILITIES
