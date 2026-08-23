@@ -11,11 +11,6 @@ leaf entries for a given release date.
 
 ## [Unreleased]
 
-### Changed
-
-- `enforce_snapping` on the facade rejects `enforce="ignore"` and defaults to `ceil`.
-- Facade workflow tests cover missing FAS fail-close, tighten-only reconciliation, and snap consistency.
-
 ## [System Release 0.2.9] - 2026-08-23
 
 ### Added
@@ -30,6 +25,8 @@ leaf entries for a given release date.
 - Sibling dependencies are exact pins for System Release 0.2.9, including the 0.2.9 leaf safety recut (`eb-evaluation==0.2.9`, `eb-optimization==0.2.7`).
 - README Python badge specifies `>=3.11`; copyright year is 2026.
 - Removed conversational docs index outro; fixed RELEASING.md format note.
+- `enforce_snapping` on the facade rejects `enforce="ignore"` and defaults to `ceil`.
+- Facade workflow tests cover missing FAS fail-close, tighten-only reconciliation, and snap consistency.
 
 ### Fixed
 
@@ -41,11 +38,14 @@ leaf entries for a given release date.
 - Mandatory FAS review on panel, workflow, `decide_governance`, and `run_governance_gate`.
 - `apply_ral` treats NA/empty `fas_class` as BLOCKED; DQC/gate fail-close on NaN or negative demand.
 - Fail-closed governance, snap, injected-decision reconciliation, and finite-coverage gates.
+- `apply_ral` / `run_governance_workflow_df` keep snap mode `ceil` unless `infer_policy_from_recommendations=True`.
+- `ReadinessAdjustmentLayer.transform` requires an approved decisions table; `apply_mask` cannot authorize writes alone.
 
 ### eb-optimization 0.2.7
 
 - `apply_ral_policy` is hard-deprecated; artifact `.transform()` / `adjust_forecast` require an approved governance table.
-- `snap_to_grid` and `enforce_snapping` refuse non-finite forecast cells.
+- Leaf artifact writers refuse `apply_mask` without a valid approved decisions table.
+- `snap_to_grid` and `enforce_snapping` default to `ceil`, refuse non-finite cells, and hard-raise on `enforce="ignore"`.
 - `compute_dqc` delegates the full series to `eb_evaluation.classify_dqc`.
 
 ### eb-metrics 0.2.8
@@ -74,5 +74,6 @@ leaf entries for a given release date.
 ### eb-examples 0.2.0
 
 - Added `py.typed` marker and `pyarrow` dependency for parquet handling.
-- Golden-path scripts import exclusively from public package roots.
-- Exact sibling pins for System Release 0.2.9.
+- Golden-path governance and RAL scripts call `electric_barometer.run_governance_workflow_df` and `electric_barometer.apply_ral`.
+- FAS review is mandatory; `--no-fas` is removed.
+- Exact sibling pins for System Release 0.2.9, including `electric-barometer==0.2.9`.
