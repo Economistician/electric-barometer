@@ -7,6 +7,7 @@ ecosystem packages do not introduce import-time failures when present.
 
 import importlib
 import importlib.util
+from pathlib import Path
 
 
 def _can_import(name: str) -> bool:
@@ -19,6 +20,8 @@ def test_smoke_imports_and_public_surface():
 
     # Minimal public-surface assertion for the flagship package
     assert hasattr(eb, "__version__")
+    assert eb.__file__ is not None
+    assert Path(eb.__file__).with_name("py.typed").is_file()
 
     # Optional ecosystem packages
     optional = [

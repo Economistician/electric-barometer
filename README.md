@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/Economistician/electric-barometer/actions/workflows/ci.yml/badge.svg)](https://github.com/Economistician/electric-barometer/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/License-BSD--3--Clause-blue.svg)
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
+![Python](https://img.shields.io/badge/Python-%3E%3D3.11-blue.svg)
 [![PyPI version](https://img.shields.io/pypi/v/electric-barometer.svg)](https://pypi.org/project/electric-barometer/)
 
 Top-level orchestration and entry-point package for the Electric Barometer ecosystem.

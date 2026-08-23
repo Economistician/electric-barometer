@@ -19,28 +19,28 @@ The ecosystem is modular and composable, with clear separation between metrics, 
 
 At a high level, Electric Barometer centers on:
 
-- **Cost-weighted evaluation**  
+- **Cost-weighted evaluation**
   Metrics that reflect real operational asymmetry rather than symmetric error
 
-- **Readiness and plausibility**  
+- **Readiness and plausibility**
   Signals that capture whether forecasts are operationally actionable
 
-- **Decision calibration**  
+- **Decision calibration**
   Policies and tuning layers that translate forecasts into decisions
 
-- **Governance and transparency**  
+- **Governance and transparency**
   Explicit contracts, diagnostics, and auditability across the lifecycle
 
 ## Package ecosystem
 
 Electric Barometer is composed of multiple focused packages, each with a narrow responsibility:
 
-- **Metrics** — cost-weighted and readiness-aware evaluation primitives  
-- **Contracts** — canonical data structures and shared semantics  
-- **Evaluation** — diagnostics, validation, and model selection  
-- **Optimization** — policies, tuning, and search utilities  
-- **Features** — feature engineering utilities  
-- **Adapters** — integration layers for external frameworks  
+- **Metrics** — cost-weighted and readiness-aware evaluation primitives
+- **Contracts** — canonical data structures and shared semantics
+- **Evaluation** — diagnostics, validation, and model selection
+- **Optimization** — policies, tuning, and search utilities
+- **Features** — feature engineering utilities
+- **Adapters** — integration layers for external frameworks
 - **Integration** — tooling and conventions for composing the system
 
 Each package exposes a minimal API surface and is documented individually under the Packages section.

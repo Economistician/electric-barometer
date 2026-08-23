@@ -11,10 +11,15 @@ leaf entries for a given release date.
 
 ## [Unreleased]
 
+### Added
+
+- `py.typed` marker for PEP 561 compliance.
+
 ### Changed
 
 - Removed conversational docs index outro; fixed RELEASING.md format note.
 - Raised the Python floor to `>=3.11` to match leaf packages.
+- README Python badge now specifies `>=3.11`.
 
 ### Fixed
 
