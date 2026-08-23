@@ -15,6 +15,10 @@ leaf entries for a given release date.
 
 - Removed conversational docs index outro; fixed RELEASING.md format note.
 
+### Fixed
+
+- Resolved ruff formatting/import-sort issues and Pyright import resolution for smoke tests.
+
 ## [System Release 0.2.9] - 2026-08-22
 
 ### eb-metrics

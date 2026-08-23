@@ -18,11 +18,11 @@ Environment:
 from __future__ import annotations
 
 import argparse
+from dataclasses import dataclass, field
 import os
+from pathlib import Path
 import re
 import sys
-from dataclasses import dataclass, field
-from pathlib import Path
 
 LEAF_PACKAGES: tuple[str, ...] = (
     "eb-metrics",
@@ -246,7 +246,13 @@ def render_macro_changelog(
         after = unreleased.end()
         next_heading = re.search(r"^##\s+", existing[after:], re.MULTILINE)
         insert_at = after + next_heading.start() if next_heading else len(existing)
-        return existing[:insert_at].rstrip() + "\n\n" + system_block + "\n" + existing[insert_at:].lstrip()
+        return (
+            existing[:insert_at].rstrip()
+            + "\n\n"
+            + system_block
+            + "\n"
+            + existing[insert_at:].lstrip()
+        )
 
     # No Unreleased heading — prepend after the file preamble / first content.
     return existing.rstrip() + "\n\n" + system_block

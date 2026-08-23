@@ -15,7 +15,7 @@ def _can_import(name: str) -> bool:
 
 def test_smoke_imports_and_public_surface():
     # Required core packages
-    import electric_barometer as eb
+    import electric_barometer as eb  # type: ignore[reportMissingImports]
 
     # Minimal public-surface assertion for the flagship package
     assert hasattr(eb, "__version__")
