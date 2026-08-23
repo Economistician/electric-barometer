@@ -35,11 +35,11 @@ classifiers = [
 # Electric Barometer System Release 0.2.9 pins
 dependencies = [
   "eb-metrics==0.2.8",
-  "eb-evaluation==0.2.8",
+  "eb-evaluation==0.2.9",
   "eb-adapters==0.2.4",
   "eb-features==0.2.6",
   "eb-contracts==0.2.2",
-  "eb-optimization==0.2.6",
+  "eb-optimization==0.2.7",
 ]
 
 ######################################
@@ -72,7 +72,7 @@ metrics = [
   "eb-metrics==0.2.8",
 ]
 evaluation = [
-  "eb-evaluation==0.2.8",
+  "eb-evaluation==0.2.9",
 ]
 adapters = [
   "eb-adapters==0.2.4",
@@ -84,7 +84,7 @@ contracts = [
   "eb-contracts==0.2.2",
 ]
 optimization = [
-  "eb-optimization==0.2.6",
+  "eb-optimization==0.2.7",
 ]
 
 # Proxy extras to eb-metrics extras
@@ -99,11 +99,11 @@ tf = [
 # IMPORTANT: do NOT self-reference "electric-barometer[...]" inside its own extras.
 all = [
   "eb-metrics[sklearn,tf]==0.2.8",
-  "eb-evaluation==0.2.8",
+  "eb-evaluation==0.2.9",
   "eb-adapters==0.2.4",
   "eb-features==0.2.6",
   "eb-contracts==0.2.2",
-  "eb-optimization==0.2.6",
+  "eb-optimization==0.2.7",
   "pytest>=8.0",
   "pytest-cov>=5.0",
 ]

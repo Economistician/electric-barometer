@@ -22,7 +22,7 @@ leaf entries for a given release date.
 
 - Package version is `0.2.9`, matching this system release header.
 - Development Status classifier is `4 - Beta`.
-- Sibling dependencies are exact pins for System Release 0.2.9.
+- Sibling dependencies are exact pins for System Release 0.2.9, including the 0.2.9 leaf safety recut (`eb-evaluation==0.2.9`, `eb-optimization==0.2.7`).
 - README Python badge specifies `>=3.11`; copyright year is 2026.
 - Removed conversational docs index outro; fixed RELEASING.md format note.
 
@@ -31,16 +31,17 @@ leaf entries for a given release date.
 - Resolved ruff formatting/import-sort issues and Pyright import resolution for smoke tests.
 - Declared runtime dependencies on `eb-contracts` and `eb-optimization`.
 
-### eb-evaluation 0.2.8
+### eb-evaluation 0.2.9
 
-- Fail-closed governance, snap, DQC parse, injected-decision reconciliation, and finite-coverage gates.
-- Root re-exports of DQC, FPC, FAS, and governance diagnostics.
-- Exact sibling pins (`eb-metrics==0.2.8`, `eb-adapters==0.2.4`).
+- Mandatory FAS review on panel, workflow, `decide_governance`, and `run_governance_gate`.
+- `apply_ral` treats NA/empty `fas_class` as BLOCKED; DQC/gate fail-close on NaN or negative demand.
+- Fail-closed governance, snap, injected-decision reconciliation, and finite-coverage gates.
 
-### eb-optimization 0.2.6
+### eb-optimization 0.2.7
 
+- `apply_ral_policy` is hard-deprecated; artifact `.transform()` / `adjust_forecast` require an approved governance table.
+- `snap_to_grid` and `enforce_snapping` refuse non-finite forecast cells.
 - `compute_dqc` delegates the full series to `eb_evaluation.classify_dqc`.
-- Fail-closed DQC enforcement, snap arithmetic aligned with evaluation, exact sibling pins.
 
 ### eb-metrics 0.2.8
 
