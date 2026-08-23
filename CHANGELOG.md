@@ -14,10 +14,12 @@ leaf entries for a given release date.
 ### Changed
 
 - Removed conversational docs index outro; fixed RELEASING.md format note.
+- Raised the Python floor to `>=3.11` to match leaf packages.
 
 ### Fixed
 
 - Resolved ruff formatting/import-sort issues and Pyright import resolution for smoke tests.
+- Declared runtime dependencies on `eb-contracts` and `eb-optimization`.
 
 ## [System Release 0.2.9] - 2026-08-22
 

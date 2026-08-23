@@ -6,7 +6,7 @@ name = "electric-barometer"
 version = "0.2.6"
 description = "Umbrella package for the Electric Barometer ecosystem (metrics, evaluation, features, adapters, and related tooling)."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 
 # License expression string (PEP 639-compatible)
 license = "BSD-3-Clause"
@@ -23,7 +23,6 @@ classifiers = [
   "Intended Audience :: Developers",
   "Intended Audience :: Science/Research",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
@@ -39,6 +38,8 @@ dependencies = [
   "eb-evaluation>=0.2,<0.3",
   "eb-adapters>=0.2,<0.3",
   "eb-features>=0.2,<0.3",
+  "eb-contracts>=0.2,<0.3",
+  "eb-optimization>=0.2,<0.3",
 ]
 
 ######################################
@@ -79,6 +80,12 @@ adapters = [
 features = [
   "eb-features>=0.2,<0.3",
 ]
+contracts = [
+  "eb-contracts>=0.2,<0.3",
+]
+optimization = [
+  "eb-optimization>=0.2,<0.3",
+]
 
 # Proxy extras to eb-metrics extras (band-aligned)
 sklearn = [
@@ -95,6 +102,8 @@ all = [
   "eb-evaluation>=0.2,<0.3",
   "eb-adapters>=0.2,<0.3",
   "eb-features>=0.2,<0.3",
+  "eb-contracts>=0.2,<0.3",
+  "eb-optimization>=0.2,<0.3",
   "pytest>=8.0",
   "pytest-cov>=5.0",
 ]
