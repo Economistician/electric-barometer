@@ -11,6 +11,11 @@ leaf entries for a given release date.
 
 ## [Unreleased]
 
+### Changed
+
+- `enforce_snapping` on the facade rejects `enforce="ignore"` and defaults to `ceil`.
+- Facade workflow tests cover missing FAS fail-close, tighten-only reconciliation, and snap consistency.
+
 ## [System Release 0.2.9] - 2026-08-23
 
 ### Added
