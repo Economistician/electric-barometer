@@ -51,11 +51,4 @@ Each package exposes a minimal API surface and is documented individually under 
 - Use **Concepts** to understand the underlying ideas and design choices
 - Use **Guides** to see how components fit together in practice
 
-This documentation site serves as the **authoritative reference** for the Electric Barometer ecosystem.
-
----
-
-If you want, next we can:
-- refine the **Concepts** section hierarchy
-- wire the **Packages** nav cleanly now that all leaf repos are synced
-- or draft a short “Why Electric Barometer?” page for positioning
+This documentation site is the **authoritative reference** for the Electric Barometer ecosystem.

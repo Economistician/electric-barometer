@@ -11,6 +11,10 @@ leaf entries for a given release date.
 
 ## [Unreleased]
 
+### Changed
+
+- Removed conversational docs index outro; fixed RELEASING.md format note.
+
 ## [System Release 0.2.9] - 2026-08-22
 
 ### eb-metrics

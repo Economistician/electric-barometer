@@ -1,8 +1,7 @@
 # Electric Barometer – Release Procedure
 
 This document defines the **canonical release process** for all Electric Barometer
-repositories. It is written in Markdown syntax but intentionally stored as a `.txt`
-file for portability and explicitness.
+repositories.
 
 ---
 
