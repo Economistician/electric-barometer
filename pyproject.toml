@@ -3,7 +3,7 @@
 ######################################
 [project]
 name = "electric-barometer"
-version = "0.2.6"
+version = "0.2.9"
 description = "Umbrella package for the Electric Barometer ecosystem (metrics, evaluation, features, adapters, and related tooling)."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -19,7 +19,7 @@ authors = [
 keywords = ["forecasting", "operations", "evaluation", "metrics", "features", "time-series"]
 
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
   "Intended Audience :: Science/Research",
   "Programming Language :: Python :: 3",
@@ -32,14 +32,14 @@ classifiers = [
 ######################################
 # Core runtime dependencies
 ######################################
-# Electric Barometer compatibility band (0.2.x)
+# Electric Barometer System Release 0.2.9 pins
 dependencies = [
-  "eb-metrics>=0.2,<0.3",
-  "eb-evaluation>=0.2,<0.3",
-  "eb-adapters>=0.2,<0.3",
-  "eb-features>=0.2,<0.3",
-  "eb-contracts>=0.2,<0.3",
-  "eb-optimization>=0.2,<0.3",
+  "eb-metrics==0.2.8",
+  "eb-evaluation==0.2.8",
+  "eb-adapters==0.2.4",
+  "eb-features==0.2.6",
+  "eb-contracts==0.2.2",
+  "eb-optimization==0.2.6",
 ]
 
 ######################################
@@ -67,43 +67,43 @@ dev = [
   "pytest-cov>=5.0",
 ]
 
-# Ecosystem extras (band-aligned)
+# Ecosystem extras (exact System Release 0.2.9 pins)
 metrics = [
-  "eb-metrics>=0.2,<0.3",
+  "eb-metrics==0.2.8",
 ]
 evaluation = [
-  "eb-evaluation>=0.2,<0.3",
+  "eb-evaluation==0.2.8",
 ]
 adapters = [
-  "eb-adapters>=0.2,<0.3",
+  "eb-adapters==0.2.4",
 ]
 features = [
-  "eb-features>=0.2,<0.3",
+  "eb-features==0.2.6",
 ]
 contracts = [
-  "eb-contracts>=0.2,<0.3",
+  "eb-contracts==0.2.2",
 ]
 optimization = [
-  "eb-optimization>=0.2,<0.3",
+  "eb-optimization==0.2.6",
 ]
 
-# Proxy extras to eb-metrics extras (band-aligned)
+# Proxy extras to eb-metrics extras
 sklearn = [
-  "eb-metrics[sklearn]>=0.2,<0.3",
+  "eb-metrics[sklearn]==0.2.8",
 ]
 tf = [
-  "eb-metrics[tf]>=0.2,<0.3",
+  "eb-metrics[tf]==0.2.8",
 ]
 
 # Convenience rollups
 # IMPORTANT: do NOT self-reference "electric-barometer[...]" inside its own extras.
 all = [
-  "eb-metrics[sklearn,tf]>=0.2,<0.3",
-  "eb-evaluation>=0.2,<0.3",
-  "eb-adapters>=0.2,<0.3",
-  "eb-features>=0.2,<0.3",
-  "eb-contracts>=0.2,<0.3",
-  "eb-optimization>=0.2,<0.3",
+  "eb-metrics[sklearn,tf]==0.2.8",
+  "eb-evaluation==0.2.8",
+  "eb-adapters==0.2.4",
+  "eb-features==0.2.6",
+  "eb-contracts==0.2.2",
+  "eb-optimization==0.2.6",
   "pytest>=8.0",
   "pytest-cov>=5.0",
 ]

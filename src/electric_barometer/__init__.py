@@ -1,14 +1,38 @@
 """
-Top-level orchestration package for the Electric Barometer ecosystem.
+Public facade for the Electric Barometer ecosystem.
 
-This distribution intentionally contains minimal runtime code. Its primary purpose
-is to provide a stable installation and versioning surface and to coordinate
-compatible dependency constraints across the core Electric Barometer packages.
+This distribution coordinates compatible leaf versions and re-exports the
+production governance surface so callers can import from ``electric_barometer``.
 """
 
 from __future__ import annotations
 
 from importlib.metadata import PackageNotFoundError, version
+
+from eb_evaluation import (
+    DQCClass,
+    DQCResult,
+    DQCThresholds,
+    FASClass,
+    FASThresholds,
+    FPCClass,
+    FPCResult,
+    FPCThresholds,
+    RALPolicy,
+    apply_ral,
+    build_fas_surface,
+    classify_dqc,
+    classify_fpc,
+    decide_governance,
+    evaluate_governance_panel_df,
+    run_governance_workflow_df,
+)
+from eb_optimization import enforce_snapping
+
+DQC = DQCClass
+FPC = FPCClass
+FAS = FASClass
+RAL = RALPolicy
 
 
 def _resolve_version() -> str:
@@ -16,10 +40,32 @@ def _resolve_version() -> str:
     try:
         return version("electric-barometer")
     except PackageNotFoundError:
-        # Not installed (e.g., running from a source checkout)
         return "0.0.0"
 
 
 __version__ = _resolve_version()
 
-__all__ = ["__version__"]
+__all__ = [
+    "DQC",
+    "FAS",
+    "FPC",
+    "RAL",
+    "DQCClass",
+    "DQCResult",
+    "DQCThresholds",
+    "FASClass",
+    "FASThresholds",
+    "FPCClass",
+    "FPCResult",
+    "FPCThresholds",
+    "RALPolicy",
+    "__version__",
+    "apply_ral",
+    "build_fas_surface",
+    "classify_dqc",
+    "classify_fpc",
+    "decide_governance",
+    "enforce_snapping",
+    "evaluate_governance_panel_df",
+    "run_governance_workflow_df",
+]

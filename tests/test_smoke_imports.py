@@ -1,7 +1,7 @@
 """
 Smoke tests for the Electric Barometer ecosystem.
 
-Validates that required core packages import cleanly and that optional
+Validates that the umbrella facade imports cleanly and that optional
 ecosystem packages do not introduce import-time failures when present.
 """
 
@@ -15,15 +15,30 @@ def _can_import(name: str) -> bool:
 
 
 def test_smoke_imports_and_public_surface():
-    # Required core packages
     import electric_barometer as eb  # type: ignore[reportMissingImports]
 
-    # Minimal public-surface assertion for the flagship package
     assert hasattr(eb, "__version__")
     assert eb.__file__ is not None
     assert Path(eb.__file__).with_name("py.typed").is_file()
 
-    # Optional ecosystem packages
+    required = (
+        "run_governance_workflow_df",
+        "evaluate_governance_panel_df",
+        "apply_ral",
+        "decide_governance",
+        "DQC",
+        "FPC",
+        "FAS",
+        "RAL",
+        "enforce_snapping",
+        "classify_dqc",
+        "classify_fpc",
+        "build_fas_surface",
+    )
+    assert set(required) <= set(eb.__all__)
+    for name in required:
+        assert getattr(eb, name) is not None
+
     optional = [
         "eb_evaluation",
         "eb_adapters",

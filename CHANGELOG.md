@@ -11,88 +11,62 @@ leaf entries for a given release date.
 
 ## [Unreleased]
 
+## [System Release 0.2.9] - 2026-08-23
+
 ### Added
 
+- Public facade re-exports `run_governance_workflow_df`, `evaluate_governance_panel_df`, `apply_ral`, `decide_governance`, DQC/FPC/FAS/RAL taxonomies, and `enforce_snapping` from `electric_barometer`.
 - `py.typed` marker for PEP 561 compliance.
 
 ### Changed
 
+- Package version is `0.2.9`, matching this system release header.
+- Development Status classifier is `4 - Beta`.
+- Sibling dependencies are exact pins for System Release 0.2.9.
+- README Python badge specifies `>=3.11`; copyright year is 2026.
 - Removed conversational docs index outro; fixed RELEASING.md format note.
-- Raised the Python floor to `>=3.11` to match leaf packages.
-- README Python badge now specifies `>=3.11`.
 
 ### Fixed
 
 - Resolved ruff formatting/import-sort issues and Pyright import resolution for smoke tests.
 - Declared runtime dependencies on `eb-contracts` and `eb-optimization`.
 
-## [System Release 0.2.9] - 2026-08-22
+### eb-evaluation 0.2.8
 
-### eb-metrics
+- Fail-closed governance, snap, DQC parse, injected-decision reconciliation, and finite-coverage gates.
+- Root re-exports of DQC, FPC, FAS, and governance diagnostics.
+- Exact sibling pins (`eb-metrics==0.2.8`, `eb-adapters==0.2.4`).
 
-#### Added
+### eb-optimization 0.2.6
+
+- `compute_dqc` delegates the full series to `eb_evaluation.classify_dqc`.
+- Fail-closed DQC enforcement, snap arithmetic aligned with evaluation, exact sibling pins.
+
+### eb-metrics 0.2.8
 
 - Added zero-allocation scalar fast paths for unweighted cwsl, nsl, ud, and hr_at_tau.
 - Added 67 property-based stress tests verifying scale invariance, monotonicity, and exact zero limits.
 - Exported py.typed marker for PEP 561 compliance.
 
-### eb-evaluation
-
-#### Breaking Changes
-
-- Removed default cost parameters (`cu=2.0`, `co=1.0`) in `evaluate_groups_df` to enforce explicit operational costs ("no hidden heuristics").
-
-#### Performance
-
-- Vectorized group processing, reducing panel evaluation from ~373 ms to <1 ms on multi-million row panels.
-
-#### Added
-
-- Exposed `compare_forecasts` and `__version__` on root `__all__`.
-
-### eb-contracts
-
-#### Added
+### eb-contracts 0.2.2
 
 - Added `all` extras union to `pyproject.toml` for zero-friction `pip install -e ".[all]"`.
-
-#### Fixed
-
 - Replaced `print()` warning statements with standard Python `logging.warning`.
 - Updated package metadata (author info, Python requirement `>=3.11`).
 
-### eb-optimization
-
-#### Added
-
-- Exposed `CostRatioPolicy`, `TauPolicy`, `DQCPolicy`, and key helpers on root `__all__`.
-- Added `py.typed` marker and updated Python floor to `>=3.11`.
-
-### eb-features
-
-#### Added
+### eb-features 0.2.6
 
 - Exposed `FeatureConfig`, `FeatureEngineer`, and core feature functions on root `__all__`.
 - Added `py.typed` marker and updated Python floor to `>=3.11`.
 
-### eb-adapters
-
-#### Breaking Changes
+### eb-adapters 0.2.4
 
 - Removed runtime dependency on `eb-evaluation` to break circular installation cycle.
+- Exposed real adapter classes with `fit(X, y)` / `predict(X)` signatures.
+- Exact sibling pins (`eb-metrics==0.2.8`, `eb-contracts==0.2.2`).
 
-#### Added
-
-- Exposed real adapter classes (`ArimaAdapter`, `SarimaxAdapter`, `XGBoostRegressorAdapter`) with `fit(X, y)` / `predict(X)` signatures.
-- Added `test` and `all` extras to `pyproject.toml`.
-
-### eb-examples
-
-#### Added
+### eb-examples 0.2.0
 
 - Added `py.typed` marker and `pyarrow` dependency for parquet handling.
-
-#### Fixed
-
-- Aligned golden path pipeline script to include explicit FRS evaluation with required `cwsl_max`.
-- Updated all metric scripts to import exclusively from public package roots.
+- Golden-path scripts import exclusively from public package roots.
+- Exact sibling pins for System Release 0.2.9.

@@ -21,7 +21,7 @@ This repository serves as the top-level entry point for the Electric Barometer e
 
 `electric-barometer` defines the public system boundary for the Electric Barometer ecosystem. It provides a unified entry point, establishes compatible dependency constraints across core packages, and ensures that the ecosystem can be installed and imported as a coherent whole.
 
-This repository does not implement metrics, evaluation logic, feature engineering, or model adapters directly. Those responsibilities live in dedicated sub-packages. Instead, this layer coordinates composition, versioning, and optional integration, allowing users to adopt only the components they need while maintaining a stable and well-defined top-level interface.
+This repository re-exports the production governance surface from the leaf packages. Metrics, evaluation logic, feature engineering, and model adapters remain implemented in those packages. This layer coordinates composition, versioning, and a stable top-level import facade.
 
 ---
 
@@ -29,6 +29,16 @@ This repository does not implement metrics, evaluation logic, feature engineerin
 
 ```bash
 pip install electric-barometer
+```
+
+```python
+from electric_barometer import (
+    apply_ral,
+    decide_governance,
+    enforce_snapping,
+    evaluate_governance_panel_df,
+    run_governance_workflow_df,
+)
 ```
 
 ---
@@ -47,4 +57,4 @@ At the system level, Electric Barometer prioritizes explicit contracts, stable i
 ## License
 
 BSD 3-Clause License.
-© 2025 Kyle Corrie.
+© 2026 Kyle Corrie.
