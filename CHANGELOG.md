@@ -21,12 +21,12 @@ leaf entries for a given release date.
 ### Changed
 
 - Package version is `0.2.9`, matching this system release header.
-- Development Status classifier is `4 - Beta`.
+- Development Status classifier is `5 - Production/Stable`.
 - Sibling dependencies are exact pins for System Release 0.2.9, including the 0.2.9 leaf safety recut (`eb-evaluation==0.2.9`, `eb-optimization==0.2.7`).
 - README Python badge specifies `>=3.11`; copyright year is 2026.
 - Removed conversational docs index outro; fixed RELEASING.md format note.
 - `enforce_snapping` on the facade rejects `enforce="ignore"` and defaults to `ceil`.
-- Facade workflow tests cover missing FAS fail-close, tighten-only reconciliation, and snap consistency.
+- Facade workflow tests cover missing FAS fail-close, tighten-only reconciliation, snap consistency, panel coverage boundaries, and unknown FAS batch continuity.
 
 ### Fixed
 

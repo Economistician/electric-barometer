@@ -192,6 +192,97 @@ def test_facade_enforce_snapping_default_matches_apply_ral_ceil() -> None:
     )
 
 
+def _continuous_stream(
+    *,
+    site_id: int,
+    forecast_entity_id: int,
+    n: int,
+    n_nonfinite: int = 0,
+) -> pd.DataFrame:
+    y = np.array([0.1 * (i + 1) for i in range(n)], dtype=float)
+    base = np.array([v * 0.90 if (i % 2) else v for i, v in enumerate(y)], dtype=float)
+    ral = np.array([v * 1.01 for v in y], dtype=float)
+    if n_nonfinite:
+        y[:n_nonfinite] = np.nan
+        base[:n_nonfinite] = np.nan
+        ral[:n_nonfinite] = np.nan
+    return pd.DataFrame(
+        {
+            "site_id": [site_id] * n,
+            "forecast_entity_id": [forecast_entity_id] * n,
+            "y": y,
+            "yhat_base": base,
+            "yhat_ral": ral,
+        }
+    )
+
+
+def test_facade_panel_coverage_at_20_percent_governs_finite_subset() -> None:
+    df = _continuous_stream(site_id=1, forecast_entity_id=10, n=75, n_nonfinite=15)
+    _panel, decisions = eb.run_governance_workflow_df(
+        df=df,
+        keys=["site_id", "forecast_entity_id"],
+        actual_col="y",
+        base_forecast_col="yhat_base",
+        ral_forecast_col="yhat_ral",
+        tau=2.0,
+        fas_class="ALLOWED",
+    )
+    row = decisions.iloc[0]
+    assert int(row["n"]) == 75
+    assert int(row["n_finite"]) == 60
+    assert float(row["finite_coverage"]) == pytest.approx(0.80)
+    assert str(row["recommendations"]) != "insufficient_finite_coverage_fail_closed"
+    assert str(row["fas_class"]) == "ALLOWED"
+
+
+def test_facade_panel_coverage_over_20_percent_or_under_8_finite_fails_closed() -> None:
+    over = _continuous_stream(site_id=1, forecast_entity_id=10, n=75, n_nonfinite=16)
+    thin = _continuous_stream(site_id=2, forecast_entity_id=20, n=7, n_nonfinite=0)
+    df = pd.concat([over, thin], ignore_index=True)
+    _panel, decisions = eb.run_governance_workflow_df(
+        df=df,
+        keys=["site_id", "forecast_entity_id"],
+        actual_col="y",
+        base_forecast_col="yhat_base",
+        ral_forecast_col="yhat_ral",
+        tau=2.0,
+        fas_class="ALLOWED",
+    )
+    assert len(decisions) == 2
+    for _, row in decisions.iterrows():
+        assert str(row["status"]).lower() == "red"
+        assert str(row["ral_policy"]).lower() == "disallow"
+        assert str(row["fpc_raw_class"]).lower() == "incompatible"
+        assert str(row["fpc_snapped_class"]).lower() == "incompatible"
+        assert str(row["recommendations"]) in {
+            "insufficient_finite_coverage_fail_closed",
+            "empty_series_fail_closed",
+        }
+
+
+def test_facade_unknown_fas_token_fails_closed_without_aborting_siblings() -> None:
+    df = _build_sample_panel_df()
+    df["fas_class"] = np.where(df["forecast_entity_id"] == 10, "ALOWED", "ALLOWED")
+    _panel, decisions = eb.run_governance_workflow_df(
+        df=df,
+        keys=["site_id", "forecast_entity_id"],
+        actual_col="y",
+        base_forecast_col="yhat_base",
+        ral_forecast_col="yhat_ral",
+        tau=2.0,
+        fas_class_col="fas_class",
+    )
+    bad = decisions.loc[decisions["forecast_entity_id"] == 10].iloc[0]
+    ok = decisions.loc[decisions["forecast_entity_id"] == 20].iloc[0]
+    assert str(bad["fas_class"]) == "BLOCKED"
+    assert str(bad["status"]).lower() == "red"
+    assert str(bad["ral_policy"]).lower() == "disallow"
+    assert "unknown_fas_fail_closed" in str(bad["recommendations"])
+    assert str(ok["fas_class"]) == "ALLOWED"
+    assert "unknown_fas_fail_closed" not in str(ok["recommendations"])
+
+
 def test_facade_enforce_snapping_rejects_ignore() -> None:
     y = [0.1 * i for i in range(1, 40)]
     dqc = eb.classify_dqc(y=y)
