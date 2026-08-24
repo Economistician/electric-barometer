@@ -63,8 +63,8 @@ SECTION_HEADER_RE = re.compile(
 CATEGORY_HEADER_RE = re.compile(r"^###\s+(?P<name>.+?)\s*$", re.MULTILINE)
 BULLET_RE = re.compile(r"^[-*]\s+(?P<text>.+)$", re.MULTILINE)
 
-SYSTEM_RELEASE_LABEL = "System Release 0.2.9"
-DEFAULT_DATE = "2026-08-22"
+SYSTEM_RELEASE_LABEL = "System Release 0.2.10"
+DEFAULT_DATE = "2026-08-24"
 
 PREAMBLE = """\
 # Changelog
